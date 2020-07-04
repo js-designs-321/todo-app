@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <img src="../images/1.png" >
+        TODO App
+    </header>
+    <div id="todo-app">
+        <form action="/add-task" method="POST">
+            <div class="click-effect">
+                <label for="task-title">TITLE</label><br/>
+                <input type="text" name="task" id="task-title" placeholder="What do you need to do?" required>
+            </div>    
+            <div class="flex-row">
+                <div id="priority-setter" class="click-effect"> 
+                    <label for="priority">PRIORITY</label><br/>
+                    <select name="priority" id="priority">
+                        <option value="1" selected><p>I</p></option>
+                        <option value="2"><p>II</p></option>
+                        <option value="3"><p>III</p></option>
+                        <option value="4"><p>IV</p></option>
+                    </select>
+                </div>
+                <div id="deadline-setter" class="click-effect">
+                    <label for="deadline">DEADLINE</label><br/>
+                    <input type="date" name="deadline" id="deadline">
+                </div>    
+            </div>
+            <div class="click-effect">
+                <button type="submit" id="add-task" class="click-effect">
+                    <i class="fas fa-plus"></i> 
+                    <span>&ensp;ADD TASK</span>        
+                </button>
+            </div>
+        </form>
+        <h3>TO DO</h3>
+        <ul>
+            <% if(task_list.length == 0) { %>
+                <div class="empty-task-list">
+                    <div>
+                        <img src="../images/2.jpeg">
+                        YUP!! NOTHING TO DO
+                    </div> 
+                </div>
+            <% } %>
+            <% for (let i of task_list) { %>
+                <li>
+                    <div class="show-task">
+                        <div class="title-and-deadline">
+                            <div class="show-title" ><%= i.task %></div>
+                            <div class="show-deadline"><i class="far fa-calendar-alt"></i>&ensp;<%= i.deadline %></div>
+                        </div>
+                        <div class="importance">
+                            <% if(i.priority == 1) {%>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            <% } %>
+                            <% if(i.priority == 2) {%>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            <% } %> 
+                            <% if(i.priority == 3) {%>
+                                <i class="fas fa-star star"></i>
+                            <% } %>
+                            <% if(i.priority == 4) {%>
+                            <% } %>
+                        </div>
+                        <div id="mark-as-done">
+                            <a href="/mark-as-done/?task=<%= i.task %>">
+                            <div class="click-effect">
+                                <i class="far fa-check-circle"></i>
+                                <span>&ensp;MARK AS DONE</span>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            <% } %>   
+        </ul>
+        <h3>DONE</h3>
+        <ul>
+            <% if(completed_task_list.length == 0 && task_list.length != 0) { %>
+                <div class="empty-task-list">
+                    <div>
+                        GET STARTED WITH TASKS IN TODO LIST
+                    </div> 
+                </div>
+            <% } %>
+            <% if(completed_task_list.length == 0 && task_list.length == 0) { %>
+                <div class="empty-task-list">
+                    <div>
+                        <img src="../images/2.jpeg">
+                        TO DO LIST IS EMPTY!! ENJOY!! 
+                    </div> 
+                </div>
+            <% } %>
+            <% for (let i of completed_task_list) { %>
+                <li>
+                    <div class="show-task">
+                        <div class="title-and-deadline">
+                            <div class="show-title" ><%= i.task %></div>
+                            <div class="show-deadline"><i class="far fa-calendar-alt"></i>&ensp;<%= i.deadline %></div>
+                        </div>
+                        <div class="importance">
+                            <% if(i.priority == 1) {%>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            <% } %>
+                            <% if(i.priority == 2) {%>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            <% } %> 
+                            <% if(i.priority == 3) {%>
+                                <i class="fas fa-star star"></i>
+                            <% } %>
+                            <% if(i.priority == 4) {%>
+                            <% } %>
+                        </div>
+                        <div id="delete">
+                            <a href="/delete-task/?task=<%= i.task %>">
+                                <div class="click-effect">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>&ensp;DELETE TASK</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            <% } %>   
+        </ul>
+    </div>
+</body>
+<script src="../js/home.js"></script>
+</html>
