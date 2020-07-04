@@ -23,7 +23,7 @@ var completedTaskList = [{
  
 app.get('/',function(req,res){
     return res.render('home',{
-        title : 'TODO List',
+        title : 'TODO APP',
         task_list : taskList,
         completed_task_list : completedTaskList
     });
