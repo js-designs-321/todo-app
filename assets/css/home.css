@@ -1,3 +1,5 @@
+/* -------- Main Heading -------- */
+
 header{
     text-align: center;
     font-size: xx-large;
@@ -8,6 +10,8 @@ header img{
     height: 25px;
     width: 25px;
 }
+
+/* -------- App Frame -------- */
 
 #todo-app{
     padding: 15px;
@@ -47,6 +51,8 @@ header img{
     }
 }
 
+/* -------- Inputs -------- */
+
 label{
     font-size: 0.9rem;
     letter-spacing: 0.075rem;
@@ -77,14 +83,14 @@ input:focus{
 }
 
 
-#priority{
+select{
     width: 99.7%;
     padding: 7.5px;
     background-color: ghostwhite;
     border: 0px solid transparent;
 }
 
-#priority:focus{
+select:focus{
     outline: none;
 }
 
@@ -97,6 +103,8 @@ input:focus{
     width: 49.9%;
     padding: 2.5px;
 }
+
+/* -------- ADD TASK BUTTON -------- */
 
 #add-task{
     margin-top: 15px;
@@ -121,6 +129,8 @@ input:focus{
 #add-task:focus{
     outline: none;
 }
+
+/* -------- Display TO-DO & Completed Tasks -------- */
 
 h3{
     font-weight: 600;
@@ -184,6 +194,8 @@ li{
     text-align: right;
 }
 
+/* --- MARK AS DONE BUTTON ---*/
+
 #mark-as-done{
     margin-left:4%; 
     width: 28%;
@@ -205,6 +217,8 @@ li{
     text-decoration: none;
 }
 
+/* --- DELETE BUTTON ---*/
+
 #delete{
     margin-left:4%; 
     width: 28%;
@@ -220,6 +234,11 @@ li{
     font-size: 0.95rem;
     font-weight: 600;
     padding: 4px 2.5px;
+}
+
+
+#delete a{
+    text-decoration: none;
 }
 
 @media screen and (max-width:625px){
@@ -251,10 +270,7 @@ li{
     }
 }
 
-
-#delete a{
-    text-decoration: none;
-}
+/* --- GENERAL CLASSES ---*/
 
 .star{
     color: yellow;

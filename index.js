@@ -1,12 +1,19 @@
 const express = require('express'); 
 const port = 8000; 
 
-const app = express(); 
+//call "express" as a function
+const app = express();                         
 
+//indicating that we are using "ejs" as template
 app.set('view engine','ejs'); 
 app.set('views','./views'); 
+
+//middleware
 app.use(express.urlencoded()); 
+
+//adding static files
 app.use(express.static('assets')); 
+
 
 var taskList = [{
         task:"WOW!! NO WORK TO DO",
@@ -20,7 +27,8 @@ var completedTaskList = [{
     priority:"4",
     deadline:"NO DEADLINE"
 }]
- 
+
+//rendering home
 app.get('/',function(req,res){
     return res.render('home',{
         title : 'TODO APP',
@@ -29,6 +37,7 @@ app.get('/',function(req,res){
     });
 })
 
+//mark task as done 
 app.get('/mark-as-done',function(req,res){
     let task = req.query.task; 
     let taskIndex = taskList.findIndex(i => i.task == task); 
@@ -39,6 +48,7 @@ app.get('/mark-as-done',function(req,res){
     return res.redirect('back'); 
 })
 
+//delete task 
 app.get('/delete-task',function(req,res){
     let task = req.query.task; 
     let taskIndex = completedTaskList.findIndex(i => i.task == task); 
@@ -48,6 +58,7 @@ app.get('/delete-task',function(req,res){
     return res.redirect('back'); 
 })
 
+//add new task
 app.post('/add-task',function(req,res){
     var Deadline = "NO DEADLINE"; 
     if(req.body.deadline != ""){
@@ -62,6 +73,7 @@ app.post('/add-task',function(req,res){
     res.redirect('back');
 })
 
+//listening to request nad responding back to it
 app.listen(port,function(err){
     if(err){
         console.log("Error",err); 
